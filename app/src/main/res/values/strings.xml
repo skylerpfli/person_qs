@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">qzns</string>
+    <string name="app_name">罄书1.0</string>
+
+    <!--底部导航栏显示的字符-->
+    <string name="show_main_name">主界面</string>
+    <string name="show_calendar_name">日历</string>
+    <string name="show_tag_name">标记便签</string>
+    <string name="show_person_name">个人界面</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
