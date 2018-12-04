@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorMain">#F7F7F7</color>
+
+    <color name="colorLineBottom">#DCDCDC</color>
+    <color name="colorLineTop">#F5F5F5</color>
+
+    <color name="colorBlack">#000000</color>
+
 </resources>

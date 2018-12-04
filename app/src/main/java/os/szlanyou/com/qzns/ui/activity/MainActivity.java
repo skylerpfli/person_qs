@@ -1,4 +1,4 @@
-package os.szlanyou.com.qzns.Ui.Activity;
+package os.szlanyou.com.qzns.ui.activity;
 
 import android.app.Activity;
 import android.os.Build;
@@ -16,10 +16,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import os.szlanyou.com.qzns.R;
-import os.szlanyou.com.qzns.Ui.Fragment.CalendarFragment;
-import os.szlanyou.com.qzns.Ui.Fragment.MainFragment;
-import os.szlanyou.com.qzns.Ui.Fragment.PersonFragment;
-import os.szlanyou.com.qzns.Ui.Fragment.TagFragment;
+import os.szlanyou.com.qzns.ui.fragment.CalendarFragment;
+import os.szlanyou.com.qzns.ui.fragment.MainFragment;
+import os.szlanyou.com.qzns.ui.fragment.PersonFragment;
+import os.szlanyou.com.qzns.ui.fragment.TagFragment;
 
 
 /**
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MIUISetStatusBarLightMode(this, true);
-
         initWidget();
     }
 
@@ -141,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    //设置状态栏为白底黑字
+    //设置状态栏为白底黑字,控制栏透明
     public boolean MIUISetStatusBarLightMode(Activity activity, boolean dark) {
         boolean result = false;
         Window window = activity.getWindow();

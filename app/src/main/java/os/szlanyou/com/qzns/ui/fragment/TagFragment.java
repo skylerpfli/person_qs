@@ -1,4 +1,4 @@
-package os.szlanyou.com.qzns.Ui.Fragment;
+package os.szlanyou.com.qzns.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,22 +10,25 @@ import android.view.ViewGroup;
 
 import os.szlanyou.com.qzns.R;
 
-public class MainFragment extends Fragment {
+
+/**
+ * Author: qzns木雨
+ * Date:2018/12/4
+ * Description: 标记便签界面
+ */
+public class TagFragment extends Fragment {
 
     View mView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_main, container, false);
+        mView = inflater.inflate(R.layout.fragment_tag, container, false);
         return mView;
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
 }

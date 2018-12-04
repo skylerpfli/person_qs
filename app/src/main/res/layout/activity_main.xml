@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ui.Activity.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
 
     <RadioGroup
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/navigationBar_height"
         android:layout_alignParentBottom="true"
         android:background="@color/colorMain"
         android:orientation="horizontal">
@@ -17,7 +17,7 @@
         <RadioButton
             android:id="@+id/table_main"
             android:layout_width="wrap_content"
-            android:layout_height="180px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
@@ -26,7 +26,7 @@
         <RadioButton
             android:id="@+id/table_calendar"
             android:layout_width="wrap_content"
-            android:layout_height="180px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
@@ -35,7 +35,7 @@
         <RadioButton
             android:id="@+id/table_tag"
             android:layout_width="wrap_content"
-            android:layout_height="180px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
@@ -44,7 +44,7 @@
         <RadioButton
             android:id="@+id/table_person"
             android:layout_width="wrap_content"
-            android:layout_height="180px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
@@ -55,9 +55,9 @@
     <ImageView
         android:id="@+id/liner"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="0.5px"
         android:layout_alignTop="@+id/navigationBar"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorLineBottom" />
 
     <FrameLayout
         android:id="@+id/FrameLayout"
