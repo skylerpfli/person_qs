@@ -11,6 +11,8 @@
     <string name="title_main">首页</string>
     <string name="title_tag">罄书</string>
     <string name="title_person_name">用户名/头像</string>
+    <string name="title_setting">设置</string>
+    <string name="title_about">关于软件</string>
 
 
 </resources>

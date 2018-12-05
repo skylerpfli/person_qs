@@ -9,7 +9,10 @@
     <dimen name="title_main_tv_size">50px</dimen>
     <dimen name="title_person_height">550px</dimen>
 
+    <!--recycleView item的设置-->
     <dimen name="item_tv_size">43px</dimen>
-
+    <dimen name="item_height">200px</dimen>
+    <dimen name="item_left_maigin_person">100px</dimen>
+    <dimen name="item_decoration">1px</dimen>
 
 </resources>

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import os.szlanyou.com.qzns.R;
 
@@ -18,7 +19,8 @@ import os.szlanyou.com.qzns.R;
  */
 public class TagFragment extends Fragment {
 
-    View mView;
+    private View mView;
+    private TextView titleTV;
 
     @Nullable
     @Override
@@ -30,5 +32,7 @@ public class TagFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        titleTV = (TextView) mView.findViewById(R.id.title_tv);
+        titleTV.setText(R.string.title_tag);
     }
 }

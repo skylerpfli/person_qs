@@ -30,30 +30,32 @@ public class MainDatasAdapter extends RecyclerView.Adapter<MainDatasAdapter.View
         dataList = new ArrayList<String>();
         String testStr = "调试数据";
         for (int i = 1; i <= 10; i++) {
-
+            dataList.add(testStr + i);
         }
     }
 
     static class ViewHodler extends RecyclerView.ViewHolder {
-
+        View mView;
+        TextView dataTV;
 
         public ViewHodler(View view) {
             super(view);
-
+            mView = view;
+            dataTV = (TextView) view.findViewById(R.id.item_tv);
         }
     }
 
     @NonNull
     @Override
     public ViewHodler onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_person_list, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_main_list, viewGroup, false);
         ViewHodler hodler = new ViewHodler(view);
         return hodler;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHodler hodler, int position) {
-
+        hodler.dataTV.setText(dataList.get(position));
     }
 
     @Override

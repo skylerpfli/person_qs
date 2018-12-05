@@ -3,33 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <include
         android:id="@+id/title_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_main_height"
-        android:background="@color/colorMain" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/title_bar_main"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/title_main_padding"
-        android:text="@string/title_main"
-        android:textSize="@dimen/title_main_tv_size" />
-
-    <ImageView
-        android:id="@+id/liner"
-        android:layout_width="match_parent"
-        android:layout_height="0.5px"
-        android:layout_alignBottom="@+id/title_bar_main"
-        android:background="@color/colorLineTop" />
+        layout="@layout/layout_title" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="main" />
+        android:text="main"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_bar_main" />
 
 
 </RelativeLayout>

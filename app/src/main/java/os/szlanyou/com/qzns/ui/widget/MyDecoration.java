@@ -71,6 +71,7 @@ public class MyDecoration extends RecyclerView.ItemDecoration {
         mDividerHeight = dividerHeight;
     }
 
+    //自定义线条样式
     public void setDivider(Drawable divider) {
         mDivider = divider;
         mDividerHeight = mDivider.getIntrinsicHeight();
