@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#FFA500</color>
+
+    <color name="colorMain">#F7F7F7</color>
+
+    <color name="colorLineBottom">#DCDCDC</color>
+    <color name="colorLineTop">#F5F5F5</color>
+
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorItemContent">#414141</color>
+
+    <color name="colorDecoration">#DCDCDC</color>
+    <color name="colorTimeDecoration">#D3D3D3</color>
+    <color name="colorDate">#C0C0C0</color>
+    <color name="colorMoth">#A9A9A9</color>
+</resources>

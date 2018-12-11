@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.WriteActivity">
+
+    <ImageView
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_main_height"
+        android:background="@color/colorMain" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/title_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/title_main_padding"
+        android:text="@string/title_write"
+        android:textSize="@dimen/title_main_tv_size" />
+
+    <ImageView
+        android:id="@+id/back_iv"
+        android:layout_width="60px"
+        android:layout_height="72px"
+        android:layout_alignBottom="@+id/title_bar"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30px"
+        android:layout_marginBottom="@dimen/title_main_padding"
+        android:src="@drawable/back" />
+
+
+    <ImageView
+        android:id="@+id/liner"
+        android:layout_width="match_parent"
+        android:layout_height="0.5px"
+        android:layout_alignBottom="@+id/title_bar"
+        android:background="@color/colorLineTop" />
+
+    <EditText
+        android:id="@+id/write_et"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/liner"
+        android:gravity="top|left" />
+
+</RelativeLayout>

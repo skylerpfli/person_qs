@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">罄书1.0</string>
+
+    <!--底部导航栏显示的字符-->
+    <string name="show_main_name">主界面</string>
+    <string name="show_calendar_name">日历</string>
+    <string name="show_tag_name">标记便签</string>
+    <string name="show_person_name">个人界面</string>
+
+    <!--顶部title-->
+    <string name="title_main">首页</string>
+    <string name="title_tag">罄书</string>
+    <string name="title_person_name">用户名/头像</string>
+    <string name="title_setting">设置</string>
+    <string name="title_about">关于软件</string>
+    <string name="title_write">编辑</string>
+
+
+</resources>

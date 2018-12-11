@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.MainActivity">
+
+    <RadioGroup
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigationBar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorMain"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/table_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/show_main_name" />
+
+        <RadioButton
+            android:id="@+id/table_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/show_calendar_name" />
+
+        <RadioButton
+            android:id="@+id/table_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/show_tag_name" />
+
+        <RadioButton
+            android:id="@+id/table_person"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/show_person_name" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/liner"
+        android:layout_width="match_parent"
+        android:layout_height="0.5px"
+        android:layout_alignTop="@+id/navigationBar"
+        android:background="@color/colorLineBottom" />
+
+    <FrameLayout
+        android:id="@+id/FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/liner">
+
+    </FrameLayout>
+
+</RelativeLayout>
