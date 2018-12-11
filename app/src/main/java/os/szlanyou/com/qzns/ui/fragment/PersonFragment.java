@@ -37,7 +37,6 @@ public class PersonFragment extends Fragment {
         return mView;
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -47,7 +46,6 @@ public class PersonFragment extends Fragment {
 
     //初始化控件
     private void initWidget() {
-
         personRecyclerView = (RecyclerView) mView.findViewById(R.id.rv_person);
         personRecyclerView.setLayoutManager(new LinearLayoutManager(mContext)); //布局管理器
         personRecyclerView.setAdapter(new PersonAdapter(mContext));
@@ -58,6 +56,5 @@ public class PersonFragment extends Fragment {
         myDecoration.setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_decoration));
         personRecyclerView.addItemDecoration(myDecoration);
     }
-
 
 }

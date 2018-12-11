@@ -1,7 +1,10 @@
 package os.szlanyou.com.qzns.ui.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,11 +15,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.RadioButton;
 
+import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.base.BaseActivity;
+import os.szlanyou.com.qzns.model.Contants;
+import os.szlanyou.com.qzns.model.bean.WriteData;
 import os.szlanyou.com.qzns.ui.fragment.CalendarFragment;
 import os.szlanyou.com.qzns.ui.fragment.MainFragment;
 import os.szlanyou.com.qzns.ui.fragment.PersonFragment;
@@ -26,15 +35,15 @@ import os.szlanyou.com.qzns.ui.fragment.TagFragment;
 /**
  * Author: qzns木雨
  * Date:2018/12/3
- * Description: 启动界面，navigationBar通过fragment进行界面切换
+ * Description: 启动界面，navigationBar通过fragment进行主要界面的切换
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     //四个界面
-    Fragment mainFragment;
-    Fragment calendarFragment;
-    Fragment tagFragment;
-    Fragment personFragment;
+    MainFragment mainFragment;
+    CalendarFragment calendarFragment;
+    TagFragment tagFragment;
+    PersonFragment personFragment;
     FragmentManager mFragmentManager;
 
     private final int NUM_MAIN_FRAGMENT = 0;
@@ -53,6 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_main);
 
         initWidget();
@@ -73,6 +83,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         personRB.setOnClickListener(this);
 
         showFragment(NUM_MAIN_FRAGMENT);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == Contants.CODE_FOR_WRITE_RESULT && resultCode == RESULT_OK
+                && data.getBooleanExtra(Contants.NAME_RESULT_DATA, false) && null != mainFragment) {
+            //监听从编辑界面的返回,进行数据刷新
+            mainFragment.refreshData();
+        }
     }
 
 
@@ -158,6 +178,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    /**
+     * @param isNeedFresh 是否需要进行刷新界面；
+     * @description 启动主界面，WriteActivity调用
+     */
+    public static void actionStart(Context context, boolean isNeedFresh) {
+        context.startActivity(new Intent(context, MainActivity.class));
+        if (isNeedFresh) {
+            List<WriteData> test = LitePal.findAll(WriteData.class);
+            for (WriteData t1 : test) {
+                Log.d(TAG, " WriteData content: " + t1.getContent());
+            }
+        }
+    }
+
+
 }
 
 

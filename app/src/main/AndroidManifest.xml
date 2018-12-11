@@ -3,6 +3,7 @@
     package="os.szlanyou.com.qzns">
 
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".ui.activity.AboutActivity" />
+        <activity android:name=".ui.activity.WriteActivity"></activity>
     </application>
 
 </manifest>

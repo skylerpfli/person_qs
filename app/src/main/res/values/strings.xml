@@ -13,6 +13,7 @@
     <string name="title_person_name">用户名/头像</string>
     <string name="title_setting">设置</string>
     <string name="title_about">关于软件</string>
+    <string name="title_write">编辑</string>
 
 
 </resources>

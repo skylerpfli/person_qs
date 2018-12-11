@@ -1,5 +1,6 @@
 package os.szlanyou.com.qzns.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,11 @@ import java.util.List;
 
 import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.model.Contants;
+import os.szlanyou.com.qzns.model.bean.WriteData;
+import os.szlanyou.com.qzns.ui.activity.MainActivity;
+import os.szlanyou.com.qzns.ui.activity.WriteActivity;
+import os.szlanyou.com.qzns.ui.widget.TimeView;
+import os.szlanyou.com.qzns.util.TextUtils;
 
 
 /**
@@ -23,25 +29,27 @@ import os.szlanyou.com.qzns.model.Contants;
  */
 public class MainDatasAdapter extends RecyclerView.Adapter<MainDatasAdapter.ViewHodler> {
 
-    private List<String> dataList;
+    private List<WriteData> datas;
+    private Context mContext;
 
     //构建，赋予person界面静态数据
-    public MainDatasAdapter() {
-        dataList = new ArrayList<String>();
-        String testStr = "调试数据";
-        for (int i = 1; i <= 10; i++) {
-            dataList.add(testStr + i);
-        }
+    public MainDatasAdapter(Context context, List<WriteData> datas) {
+        mContext = context;
+        this.datas = datas;
     }
 
     static class ViewHodler extends RecyclerView.ViewHolder {
         View mView;
-        TextView dataTV;
+        TextView titleTV;
+        TextView contentTV;
+        TimeView mTimeView;
 
         public ViewHodler(View view) {
             super(view);
             mView = view;
-            dataTV = (TextView) view.findViewById(R.id.item_tv);
+            mTimeView = (TimeView) view.findViewById(R.id.time_v);
+            titleTV = (TextView) view.findViewById(R.id.item_title_tv);
+            contentTV = (TextView) view.findViewById(R.id.item_content_tv);
         }
     }
 
@@ -49,17 +57,54 @@ public class MainDatasAdapter extends RecyclerView.Adapter<MainDatasAdapter.View
     @Override
     public ViewHodler onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_main_list, viewGroup, false);
-        ViewHodler hodler = new ViewHodler(view);
+        final ViewHodler hodler = new ViewHodler(view);
+        hodler.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //启动编辑界面
+                int position = hodler.getAdapterPosition();
+                WriteActivity.actionStartForResult(mContext, datas.get(position).getSaveTime());
+            }
+        });
         return hodler;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHodler hodler, int position) {
-        hodler.dataTV.setText(dataList.get(position));
+
+        String content = datas.get(position).getContent();
+        String[] contentArray = content.split("\n");
+        String mTitle = "";
+        String mContent = "";
+
+        //通过换行符来粗略划分标题和内容
+        if (contentArray.length == 1) {
+            //不存在换行符
+            mTitle = content;
+        } else {
+            mTitle = contentArray[0];
+            mContent = contentArray[1];
+        }
+
+        //通过一行的字数限制粗略划分标题和内容
+        if (mTitle.length() > Contants.NUM_ITEM_TITLE_LENGTH) {
+            mTitle = content.substring(0, Contants.NUM_ITEM_TITLE_LENGTH);
+            mContent = content.substring(Contants.NUM_ITEM_TITLE_LENGTH);
+        }
+
+        if (TextUtils.isEmpty(mContent)) {
+            hodler.contentTV.setVisibility(View.GONE);
+        } else {
+            hodler.contentTV.setVisibility(View.VISIBLE);
+            hodler.contentTV.setText(mContent);
+        }
+        hodler.titleTV.setText(mTitle);
+
+        hodler.mTimeView.setTime(datas.get(position).getSaveTime());
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return datas.size();
     }
 }

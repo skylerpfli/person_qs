@@ -19,5 +19,13 @@ public class Contants {
     public final static int ABOUT_POSITON = 3;
 
 
+    //启动编辑界面，请求数据回调的请求码
+    public final static int CODE_FOR_WRITE_RESULT = 0;
+    //返回数据时，intent中的数据名称：是否需要刷新
+    public final static String NAME_RESULT_DATA = "isNeedRefresh";
+
+    //主界面标题所占用的字符串
+    public final static int NUM_ITEM_TITLE_LENGTH = 17;
+
 
 }

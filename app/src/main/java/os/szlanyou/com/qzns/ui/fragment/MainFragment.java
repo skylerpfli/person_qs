@@ -4,18 +4,28 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.litepal.LitePal;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.adapter.MainDatasAdapter;
+import os.szlanyou.com.qzns.model.bean.WriteData;
+import os.szlanyou.com.qzns.ui.activity.WriteActivity;
 import os.szlanyou.com.qzns.ui.widget.MyDecoration;
+
 
 /**
  * Author: qzns木雨
@@ -29,6 +39,12 @@ public class MainFragment extends Fragment {
 
     private TextView titleTV;
     private RecyclerView mainRecycerView;
+    private MainDatasAdapter mDatasAdapter;
+    private FloatingActionButton floatingActionButton;
+
+    private List<WriteData> datas;
+
+    private final static String TAG = "MainFragment";
 
 
     @Nullable
@@ -52,14 +68,31 @@ public class MainFragment extends Fragment {
 
         mainRecycerView = (RecyclerView) mView.findViewById(R.id.rv_main);
         mainRecycerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mainRecycerView.setAdapter(new MainDatasAdapter());
+        datas = new ArrayList<WriteData>();
+
+        mDatasAdapter = new MainDatasAdapter(mContext, datas);
+        mainRecycerView.setAdapter(mDatasAdapter);
         MyDecoration myDecoration = new MyDecoration(mContext, MyDecoration.VERTICAL_LIST);
 
         //设置分割线长度、高和线条颜色
-        myDecoration.setInset((int) getResources().getDimension(R.dimen.item_left_maigin_person));
+        myDecoration.setInset((int) getResources().getDimension(R.dimen.item_height_main));
         myDecoration.setDividerHeight((int) getResources().getDimension(R.dimen.item_decoration));
         myDecoration.setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_decoration));
         mainRecycerView.addItemDecoration(myDecoration);
+
+        floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.write_bt);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WriteActivity.actionStartForResult(mContext);
+            }
+        });
     }
 
+    //刷新数据
+    public void refreshData() {
+        datas.clear();
+        datas.addAll(LitePal.findAll(WriteData.class));
+        mDatasAdapter.notifyDataSetChanged();
+    }
 }

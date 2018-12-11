@@ -8,11 +8,10 @@ import android.widget.TextView;
 import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.base.BaseActivity;
 
-
-/**
+/**cd
  * Author: qzns木雨
  * Date:2018/12/5
- * Description: 设置界面，在personFragment点击设置选项启动
+ * Description: 设置界面，在personFragment点击“设置”选项启动
  */
 public class SettingActivity extends BaseActivity {
 
@@ -29,7 +28,6 @@ public class SettingActivity extends BaseActivity {
 
     //启动设置界面
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, SettingActivity.class);
-        context.startActivity(intent);
+        context.startActivity(new Intent(context, SettingActivity.class));
     }
 }
