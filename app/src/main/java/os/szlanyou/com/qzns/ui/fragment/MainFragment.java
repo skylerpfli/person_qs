@@ -68,7 +68,7 @@ public class MainFragment extends Fragment {
 
         mainRecycerView = (RecyclerView) mView.findViewById(R.id.rv_main);
         mainRecycerView.setLayoutManager(new LinearLayoutManager(mContext));
-        datas = new ArrayList<WriteData>();
+        datas = LitePal.order("saveTime desc").find(WriteData.class);
 
         mDatasAdapter = new MainDatasAdapter(mContext, datas);
         mainRecycerView.setAdapter(mDatasAdapter);
@@ -92,7 +92,7 @@ public class MainFragment extends Fragment {
     //刷新数据
     public void refreshData() {
         datas.clear();
-        datas.addAll(LitePal.findAll(WriteData.class));
+        datas.addAll(LitePal.order("saveTime desc").find(WriteData.class));
         mDatasAdapter.notifyDataSetChanged();
     }
 }

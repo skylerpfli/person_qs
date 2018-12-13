@@ -21,6 +21,6 @@ public class BaseApplication extends Application {
 
         LitePal.initialize(this);
         LitePal.getDatabase();
-        LitePal.deleteAll(WriteData.class);
+//        LitePal.deleteAll(WriteData.class);
     }
 }

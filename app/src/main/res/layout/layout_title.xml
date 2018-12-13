@@ -17,13 +17,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/title_main_padding"
         android:text="@string/title_main"
-        android:textSize="@dimen/title_main_tv_size" />
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/title_main_tv_size"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/liner"
         android:layout_width="match_parent"
-        android:layout_height="0.5px"
+        android:layout_height="5px"
         android:layout_alignBottom="@+id/title_bar"
-        android:background="@color/colorLineTop" />
+        android:background="@drawable/decoration_title" />
 
 </RelativeLayout>
