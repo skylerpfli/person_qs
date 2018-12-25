@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.AboutActivity" />
-        <activity android:name=".ui.activity.WriteActivity"></activity>
+        <activity android:name=".ui.activity.WriteActivity" />
+
     </application>
 
 </manifest>

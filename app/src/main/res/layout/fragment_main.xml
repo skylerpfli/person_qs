@@ -21,14 +21,15 @@
         android:layout_below="@+id/title_bar_main" />
 
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageView
         android:id="@+id/write_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/new_write_iv_size"
+        android:layout_height="@dimen/new_write_iv_size"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="50px"
-        android:layout_marginBottom="30px" />
+        android:layout_marginBottom="30px"
+        android:background="@drawable/main_note_new" />
 
 
 </RelativeLayout>

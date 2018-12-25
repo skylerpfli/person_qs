@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.litepal.LitePal;
@@ -40,7 +42,7 @@ public class MainFragment extends Fragment {
     private TextView titleTV;
     private RecyclerView mainRecycerView;
     private MainDatasAdapter mDatasAdapter;
-    private FloatingActionButton floatingActionButton;
+    private ImageView actionButton;
 
     private List<WriteData> datas;
 
@@ -80,8 +82,8 @@ public class MainFragment extends Fragment {
         myDecoration.setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_decoration));
         mainRecycerView.addItemDecoration(myDecoration);
 
-        floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.write_bt);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        actionButton = (ImageView) mView.findViewById(R.id.write_bt);
+        actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WriteActivity.actionStartForResult(mContext);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<os.szlanyou.com.qzns.ui.widget.MyCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_myCoordinatorLayout"
@@ -11,14 +12,15 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/write_control_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_main_height">
+        android:layout_height="@dimen/stateBar_height"
+        android:background="@null">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/title_main_height"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_height="match_parent"
+            android:theme="@style/AppTheme.AppWriteBar"
             app:contentScrim="@color/colorMain"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -43,11 +45,11 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="30px"
                     android:layout_marginBottom="@dimen/title_main_padding"
-                    android:src="@drawable/back" />
+                    android:src="@drawable/back"
+                    android:visibility="gone" />
 
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
-
 
     </android.support.design.widget.AppBarLayout>
 
@@ -57,34 +59,10 @@
         android:layout_height="match_parent"
         android:background="@null"
         android:gravity="top|left"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-  <!--  <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/test"
-                android:layout_width="match_parent"
-                android:layout_height="800px"
-                android:background="@color/colorBlack" />
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1800px"
-                android:layout_below="@+id/test"
-                android:background="@color/colorAccent" />
-        </RelativeLayout>
-
-    </android.support.v4.widget.NestedScrollView>
--->
-
-</os.szlanyou.com.qzns.ui.widget.MyCoordinatorLayout>
+</android.support.design.widget.CoordinatorLayout>
 
 

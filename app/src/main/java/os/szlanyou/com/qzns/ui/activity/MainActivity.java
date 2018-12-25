@@ -3,6 +3,7 @@ package os.szlanyou.com.qzns.ui.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
@@ -37,7 +39,7 @@ import os.szlanyou.com.qzns.ui.fragment.TagFragment;
  * Date:2018/12/3
  * Description: 启动界面，navigationBar通过fragment进行主要界面的切换
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity {
 
     //四个界面
     MainFragment mainFragment;
@@ -52,6 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final int NUM_PERSON_FRAGMENT = 3;
 
     //导航栏navigationBar的按钮
+    RadioGroup mRadioGroup;
     RadioButton mainRB;
     RadioButton calendarRB;
     RadioButton tagRB;
@@ -64,7 +67,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_main);
-
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         initWidget();
     }
 
@@ -72,20 +78,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initWidget() {
         mFragmentManager = getSupportFragmentManager();
 
+        mRadioGroup = (RadioGroup) findViewById(R.id.navigationBar);
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.table_main:
+                        showFragment(NUM_MAIN_FRAGMENT);
+                        break;
+                    case R.id.table_calendar:
+                        showFragment(NUM_CALENDAR_FRAGMENT);
+                        break;
+                    case R.id.table_tag:
+                        showFragment(NUM_TAG_FRAGEMENT);
+                        break;
+                    case R.id.table_person:
+                        showFragment(NUM_PERSON_FRAGMENT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
         mainRB = (RadioButton) findViewById(R.id.table_main);
         calendarRB = (RadioButton) findViewById(R.id.table_calendar);
         tagRB = (RadioButton) findViewById(R.id.table_tag);
         personRB = (RadioButton) findViewById(R.id.table_person);
 
-        mainRB.setOnClickListener(this);
-        calendarRB.setOnClickListener(this);
-        tagRB.setOnClickListener(this);
-        personRB.setOnClickListener(this);
-
+        //默认打开主界面
+        mainRB.setChecked(true);
         showFragment(NUM_MAIN_FRAGMENT);
     }
 
 
+    //由编辑界面返回
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == Contants.CODE_FOR_WRITE_RESULT && resultCode == RESULT_OK
@@ -160,24 +187,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         transaction.commit();
     }
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.table_main:
-                showFragment(NUM_MAIN_FRAGMENT);
-                break;
-            case R.id.table_calendar:
-                showFragment(NUM_CALENDAR_FRAGMENT);
-                break;
-            case R.id.table_tag:
-                showFragment(NUM_TAG_FRAGEMENT);
-                break;
-            case R.id.table_person:
-                showFragment(NUM_PERSON_FRAGMENT);
-                break;
-        }
-    }
 
     /**
      * @param isNeedFresh 是否需要进行刷新界面；

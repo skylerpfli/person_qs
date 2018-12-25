@@ -4,16 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Rect;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -23,7 +24,6 @@ import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.base.BaseActivity;
 import os.szlanyou.com.qzns.model.Contants;
 import os.szlanyou.com.qzns.model.bean.WriteData;
-import os.szlanyou.com.qzns.ui.widget.MyCoordinatorLayout;
 import os.szlanyou.com.qzns.util.TextUtils;
 
 
@@ -34,7 +34,7 @@ import os.szlanyou.com.qzns.util.TextUtils;
  */
 public class WriteActivity extends BaseActivity implements View.OnClickListener {
 
-    private MyCoordinatorLayout mCoordinatorLayout;
+    private CoordinatorLayout mCoordinatorLayout;
 
     private AppBarLayout mAppBarLayout;
 
@@ -53,6 +53,9 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
     private final static String TAG_WRITE_DATA = "writeData";
     private final static long NONE_WRITE_DATA = -1;
 
+    private boolean isKeyboardShow;
+    private boolean isInit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,36 +69,29 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
 
     private void init() {
         isEdit = false;
+        isInit = true;
+        isKeyboardShow = false;
         backIV = (ImageView) findViewById(R.id.back_iv);
         backIV.setOnClickListener(this);
         editText = (EditText) findViewById(R.id.write_et);
 
-        mCoordinatorLayout = (MyCoordinatorLayout) findViewById(R.id.layout_myCoordinatorLayout);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.layout_myCoordinatorLayout);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.write_control_bar);
 
-        //监听键盘弹出
-        mCoordinatorLayout.setOnKeyboaddsChangeListener(new MyCoordinatorLayout.OnKeyboadChangeListener() {
-            @Override
-            public void onKeyBoardStateChange(int state) {
-                switch (state) {
-                    case MyCoordinatorLayout.KEYBOARD_STATE_INIT:
-                        Log.d(TAG, "onKeyBoardStateChange init: ");
-                        break;
-                    case MyCoordinatorLayout.KEYBOARD_STATE_SHOW:
-                        Log.d(TAG, "onKeyBoardStateChange show: ");
-                        mAppBarLayout.setExpanded(false);
-                        break;
-                    case MyCoordinatorLayout.KEYBOARD_STATE_HIDE:
-                        Log.d(TAG, "onKeyBoardStateChange hide: ");
-                        mAppBarLayout.setExpanded(true);
-                        break;
-                    default:
-                        Log.d(TAG, "onKeyBoardStateChange erro: ");
-                        break;
-                }
-            }
-        });
+        Drawable background = ContextCompat.getDrawable(this, R.drawable.writebackground);
+        background.setColorFilter(ContextCompat.getColor(this, R.color.colorBackgroundFilter), PorterDuff.Mode.LIGHTEN);
+//        background.setColorFilter(Color.WHITE, PorterDuff.Mode.LIGHTEN);
+        mCoordinatorLayout.setBackground(background);
 
+        CoordinatorLayout.Behavior behavior =
+                ((CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams()).getBehavior();
+        if (behavior instanceof AppBarLayout.Behavior) {
+            AppBarLayout.Behavior appBarLayoutBehavior = (AppBarLayout.Behavior) behavior;
+            int topAndBottomOffset = appBarLayoutBehavior.getTopAndBottomOffset();
+            if (topAndBottomOffset != 0) {
+                appBarLayoutBehavior.setTopAndBottomOffset(0);
+            }
+        }
 
         //获取WriteData的savetime，新建页面为-1，否则作为数据库查询字段取出数据
         Intent intent = getIntent();
@@ -108,20 +104,17 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
             mWriteData = new WriteData();
         }
 
-        String content = mWriteData.getContent();
+        Log.d(TAG, "init mWriteData isSaved: " + mWriteData.isSaved());
 
+        String content = mWriteData.getContent();
         if (!TextUtils.isEmpty(content)) {
             editText.setText(content);
-            editText.setSelection(mWriteData.getContent().length());
         }
-
-
 
         //添加内容变动监听
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -134,8 +127,37 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
                 isEdit = true;
             }
         });
-    }
 
+        /*通过布局改变进行键盘弹出/隐藏判断
+         * */
+        editText.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+                if (isKeyboardShow || isInit) {
+                    Log.d(TAG, "onLayoutChange 键盘关闭: ");
+                    isInit = false;
+                    isKeyboardShow = false;
+                    editText.clearFocus();
+                    editText.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAppBarLayout.setExpanded(true);
+                        }
+                    });
+                } else {
+                    Log.d(TAG, "onLayoutChange 键盘开启: ");
+                    isKeyboardShow = true;
+                    editText.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAppBarLayout.setExpanded(false);
+                        }
+                    });
+                }
+            }
+        });
+    }
 
     //启动编辑界面
     public static void actionStartForResult(Context context) {
@@ -154,8 +176,7 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.back_iv:
                 Log.d(TAG, "onClick back_iv: ");
-                mAppBarLayout.setExpanded(false);
-//                saveAndLogout();
+                saveAndLogout();
                 break;
             default:
                 break;
@@ -167,24 +188,27 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
         saveAndLogout();
     }
 
-
     //检查保存文本数据，并退出
     private void saveAndLogout() {
         String content = editText.getText().toString();
         Intent intent = new Intent();
+        boolean isNeedFresh = false;
         if (TextUtils.isEmpty(content)) {
-            //文本数据为空，不需要刷新
-            intent.putExtra(Contants.NAME_RESULT_DATA, false);
+            if (mWriteData.isSaved()) {
+                Log.d(TAG, "saveAndLogout: ");
+                mWriteData.delete();
+                isNeedFresh = true;
+            }
         } else {
-
             mWriteData.setContent(content);
             if (isEdit) {
                 //有修改才更改保存时间
                 mWriteData.setSaveTime(System.currentTimeMillis());
             }
             mWriteData.save();
-            intent.putExtra(Contants.NAME_RESULT_DATA, true);
+            isNeedFresh = true;
         }
+        intent.putExtra(Contants.NAME_RESULT_DATA, isNeedFresh);
         setResult(RESULT_OK, intent);
         finish();
     }
