@@ -1,16 +1,25 @@
 <?xml version ="1.0" encoding ="utf-8"?>
 
-<inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:insetTop="40px"
-    android:insetRight="105px"
-    android:insetLeft="105px"
-    android:insetBottom="40px">
-    <selector>
-        <item android:state_checked="false"
-            android:drawable="@drawable/home_tab_icon_me"/>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <item android:state_checked="true"
-            android:drawable="@drawable/home_tab_icon_me_selected"/>
+    <item android:drawable="@drawable/ripple_item_navigation" />
 
-    </selector>
-</inset>
+    <item
+        android:bottom="40px"
+        android:left="105px"
+        android:right="105px"
+        android:top="40px">
+        <selector>
+            <item
+                android:drawable="@drawable/home_tab_icon_me"
+                android:state_checked="false" />
+
+            <item
+                android:drawable="@drawable/home_tab_icon_me_selected"
+                android:state_checked="true" />
+
+        </selector>
+    </item>
+
+
+</layer-list>
