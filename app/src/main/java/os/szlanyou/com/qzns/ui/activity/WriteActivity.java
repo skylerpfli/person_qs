@@ -54,7 +54,7 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
     private final static long NONE_WRITE_DATA = -1;
 
     private boolean isKeyboardShow;
-    private boolean isInit;
+    private boolean isNeedInit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
 
     private void init() {
         isEdit = false;
-        isInit = true;
+        isNeedInit = true;
         isKeyboardShow = false;
         backIV = (ImageView) findViewById(R.id.back_iv);
         backIV.setOnClickListener(this);
@@ -134,9 +134,9 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
 
-                if (isKeyboardShow || isInit) {
+                if (isKeyboardShow || isNeedInit) {
                     Log.d(TAG, "onLayoutChange 键盘关闭: ");
-                    isInit = false;
+                    isNeedInit = false;
                     isKeyboardShow = false;
                     editText.clearFocus();
                     editText.post(new Runnable() {
@@ -213,5 +213,30 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
         finish();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: ");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+
+        isNeedInit = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: ");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
+    }
 }
