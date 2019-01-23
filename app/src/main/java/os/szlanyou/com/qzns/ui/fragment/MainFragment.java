@@ -4,20 +4,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.litepal.LitePal;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import os.szlanyou.com.qzns.R;
@@ -40,7 +37,7 @@ public class MainFragment extends Fragment {
     private TextView titleTV;
     private RecyclerView mainRecycerView;
     private MainDatasAdapter mDatasAdapter;
-    private FloatingActionButton floatingActionButton;
+    private ImageView actionButton;
 
     private List<WriteData> datas;
 
@@ -68,7 +65,7 @@ public class MainFragment extends Fragment {
 
         mainRecycerView = (RecyclerView) mView.findViewById(R.id.rv_main);
         mainRecycerView.setLayoutManager(new LinearLayoutManager(mContext));
-        datas = new ArrayList<WriteData>();
+        datas = LitePal.order("saveTime desc").find(WriteData.class);
 
         mDatasAdapter = new MainDatasAdapter(mContext, datas);
         mainRecycerView.setAdapter(mDatasAdapter);
@@ -80,8 +77,8 @@ public class MainFragment extends Fragment {
         myDecoration.setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_decoration));
         mainRecycerView.addItemDecoration(myDecoration);
 
-        floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.write_bt);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        actionButton = (ImageView) mView.findViewById(R.id.write_bt);
+        actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WriteActivity.actionStartForResult(mContext);
@@ -92,7 +89,7 @@ public class MainFragment extends Fragment {
     //刷新数据
     public void refreshData() {
         datas.clear();
-        datas.addAll(LitePal.findAll(WriteData.class));
+        datas.addAll(LitePal.order("saveTime desc").find(WriteData.class));
         mDatasAdapter.notifyDataSetChanged();
     }
 }

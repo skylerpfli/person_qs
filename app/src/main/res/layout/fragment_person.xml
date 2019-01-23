@@ -7,7 +7,7 @@
         android:id="@+id/person_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_person_height"
-        android:background="@color/colorMain" />
+        android:background="@drawable/home_me_title_background" />
 
     <TextView
         android:layout_width="wrap_content"

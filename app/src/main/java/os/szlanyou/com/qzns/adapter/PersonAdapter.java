@@ -2,9 +2,7 @@ package os.szlanyou.com.qzns.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import java.util.List;
 import os.szlanyou.com.qzns.R;
 import os.szlanyou.com.qzns.model.Contants;
 import os.szlanyou.com.qzns.ui.activity.AboutActivity;
-import os.szlanyou.com.qzns.ui.activity.MainActivity;
 import os.szlanyou.com.qzns.ui.activity.SettingActivity;
 
 
@@ -31,7 +28,6 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHodler
 
     private List<String> dataList;
     private Context mContext;
-
 
     //构建，赋予person界面静态数据
     public PersonAdapter(Context context) {

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--底部导航栏高度-->
-    <dimen name="navigationBar_height">180px</dimen>
+    <dimen name="navigationBar_height">135px</dimen>
+    <!--顶部状态栏高度-->
+    <dimen name="stateBar_height">100px</dimen>
+
+    <!--书写按钮的高度-->
+    <dimen name="new_write_iv_size">180px</dimen>
 
     <!--顶部title-->
     <dimen name="title_main_height">200px</dimen>
     <dimen name="title_main_padding">30px</dimen>
     <dimen name="title_main_tv_size">50px</dimen>
-    <dimen name="title_person_height">550px</dimen>
+    <dimen name="title_person_height">650px</dimen>
 
     <!--recycleView item的设置-->
     <dimen name="item_tv_size">43px</dimen>

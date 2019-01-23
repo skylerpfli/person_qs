@@ -1,50 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_myCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activity.WriteActivity">
 
-    <ImageView
-        android:id="@+id/title_bar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/write_control_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_main_height"
-        android:background="@color/colorMain" />
+        android:layout_height="@dimen/stateBar_height"
+        android:background="@null">
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/title_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/title_main_padding"
-        android:text="@string/title_write"
-        android:textSize="@dimen/title_main_tv_size" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/AppTheme.AppWriteBar"
+            app:contentScrim="@color/colorMain"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
-    <ImageView
-        android:id="@+id/back_iv"
-        android:layout_width="60px"
-        android:layout_height="72px"
-        android:layout_alignBottom="@+id/title_bar"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30px"
-        android:layout_marginBottom="@dimen/title_main_padding"
-        android:src="@drawable/back" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax">
 
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/title_main_padding"
+                    android:text="@string/title_write"
+                    android:textSize="@dimen/title_main_tv_size" />
 
-    <ImageView
-        android:id="@+id/liner"
-        android:layout_width="match_parent"
-        android:layout_height="0.5px"
-        android:layout_alignBottom="@+id/title_bar"
-        android:background="@color/colorLineTop" />
+                <ImageView
+                    android:id="@+id/back_iv"
+                    android:layout_width="60px"
+                    android:layout_height="72px"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginBottom="@dimen/title_main_padding"
+                    android:src="@drawable/back"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
 
     <EditText
         android:id="@+id/write_et"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/liner"
-        android:gravity="top|left" />
+        android:background="@null"
+        android:gravity="top|left"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

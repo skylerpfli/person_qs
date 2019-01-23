@@ -1,0 +1,25 @@
+<?xml version ="1.0" encoding ="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/ripple_item_navigation" />
+
+    <item
+        android:bottom="40px"
+        android:left="105px"
+        android:right="105px"
+        android:top="40px">
+        <selector>
+            <item
+                android:drawable="@drawable/home_tab_icon_group"
+                android:state_checked="false" />
+
+            <item
+                android:drawable="@drawable/home_tab_icon_group_selected"
+                android:state_checked="true" />
+
+        </selector>
+    </item>
+
+
+</layer-list>

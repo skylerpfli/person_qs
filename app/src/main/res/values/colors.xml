@@ -10,6 +10,8 @@
     <color name="colorLineTop">#F5F5F5</color>
 
     <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorLightGray">#DCDCDC</color>
 
     <color name="colorItemContent">#414141</color>
 
@@ -17,4 +19,7 @@
     <color name="colorTimeDecoration">#D3D3D3</color>
     <color name="colorDate">#C0C0C0</color>
     <color name="colorMoth">#A9A9A9</color>
+
+
+    <color name="colorBackgroundFilter">#FAFAFA</color>
 </resources>

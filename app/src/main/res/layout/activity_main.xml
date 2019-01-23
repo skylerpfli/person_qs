@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/show_main_name" />
+            android:background="@drawable/selecter_main"/>
 
         <RadioButton
             android:id="@+id/table_calendar"
@@ -29,7 +29,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/show_calendar_name" />
+
+            android:background="@drawable/selecter_calendar"/>
 
         <RadioButton
             android:id="@+id/table_tag"
@@ -38,7 +39,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/show_tag_name" />
+            android:background="@drawable/selecter_tag"/>
 
         <RadioButton
             android:id="@+id/table_person"
@@ -47,7 +48,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/show_person_name" />
+            android:background="@drawable/selecter_person"/>
 
     </RadioGroup>
 

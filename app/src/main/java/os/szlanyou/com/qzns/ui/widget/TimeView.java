@@ -92,12 +92,6 @@ public class TimeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Log.d(TAG, "onDraw: ");
-        Log.d(TAG, "onDraw getTop: " + getTop());
-        Log.d(TAG, "onDraw getBottom: " + getBottom());
-        Log.d(TAG, "onDraw getLeft: " + getLeft());
-        Log.d(TAG, "onDraw getRight: " + getRight());
-
         canvas.drawLine(mViewWidth * 3 / 4, mViewHeight / 12, mViewWidth / 4, mViewHeight * 11 / 12, mLinePaint);
 
         if (mouth.length() > 1) {
@@ -106,11 +100,10 @@ public class TimeView extends View {
             canvas.drawText(mouth, mViewHeight / 8, mViewHeight / 2, mMonthPaint);
         }
 
-
         canvas.drawText(date, mViewWidth / 2, mViewHeight, mDatePaint);
-
     }
 
+    //确定View大小
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
